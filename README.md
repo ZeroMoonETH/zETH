@@ -410,9 +410,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Foundry Team** - For the incredible testing framework
-- **OpenZeppelin** - For battle-tested contract libraries
-- **Ethereum Community** - For continuous innovation and security research
+- **Certora** - For formal verification tools enabling mathematical proof of contract correctness
+- **Foundry Team** - For the incredible testing framework enabling 360M+ test scenarios
+- **OpenZeppelin** - For battle-tested contract libraries providing security foundations
+- **Ethereum Community** - For continuous innovation and security research advancing the ecosystem
 
 ---
 
@@ -434,10 +435,11 @@ This software is provided "as is", without warranty of any kind. Use at your own
 ## 🎖️ Testing Badges
 
 ```
-✅ 360,000,000+ Test Cases
+✅ 360,000,000+ Test Cases (Foundry)
 ✅ 160,000,000+ Unit Fuzz Tests
 ✅ 200,000,000+ Invariant Calls
 ✅ 20-Depth State Sequences
+✅ 14 Properties Formally Verified (Certora)
 ✅ Zero Failures
 ✅ Production Ready
 ```
