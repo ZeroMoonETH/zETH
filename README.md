@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Foundry](https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg)](https://getfoundry.sh/)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.30-blue.svg)](https://soliditylang.org/)
+![Ownership](https://img.shields.io/badge/Ownership-Renounced-red)
 [![Tests](https://img.shields.io/badge/Tests-360M%2B-success.svg)](test/COMPREHENSIVE_TEST_REPORT.md)
 [![Certora](https://img.shields.io/badge/Certora-Formally%20Verified-00A3E0.svg)](certora/zeth/CERTORA_AUDIT_REPORT.md)
 
@@ -451,4 +452,5 @@ This software is provided "as is", without warranty of any kind. Use at your own
 <p align="center">
   <strong>ZeroMoon zETH - This is how Ethereum wins.</strong>
 </p>
+
 
