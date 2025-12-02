@@ -312,15 +312,6 @@ This security policy and the associated test reports are provided for informatio
 
 ---
 
-## 📞 Contact
-
-For security-related inquiries:
-- **Email:** hi@zeromoon.org
-- **GitHub:** [Security Advisories](https://github.com/yourusername/zeromoon-zeth/security/advisories)
-- **Audit Requests:** Contact via GitHub issues (non-sensitive inquiries only)
-
----
-
 <p align="center">
   <strong>Security through testing. Confidence through proof.</strong>
 </p>
