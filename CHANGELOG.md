@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🎉 Initial Release
 
-The most rigorously tested Ethereum token contract ever released.
+The most rigorously tested Ethereum token contract ever released, with **360M+ Foundry tests** and **formal verification** via Certora Prover.
 
 ### Added
 
@@ -60,6 +60,17 @@ The most rigorously tested Ethereum token contract ever released.
 - **[FUZZ_TESTING_GUIDE.md](test/FUZZ_TESTING_GUIDE.md)** - How to run tests
 - **[ENHANCEMENTS_SUMMARY.md](test/ENHANCEMENTS_SUMMARY.md)** - Test architecture
 
+#### Formal Verification (Certora)
+- **[Certora Audit Report](certora/zeth/CERTORA_AUDIT_REPORT.md)** - Comprehensive formal verification results
+- **[Game Theory Analysis](certora/zeth/GAME_THEORY_ANALYSIS.md)** - Attack vector analysis (whale manipulation, MEV, etc.)
+- **[Stress Test Report](certora/zeth/STRESS_TEST_REPORT.md)** - Extreme scenario testing (1000 whales, 10K cycles, etc.)
+- **[Design Rationale](certora/zeth/DESIGN_RATIONALE.md)** - Comparison with failed projects (OHM, Terra, Safemoon)
+- **[Certora README](certora/zeth/README.md)** - Formal verification setup and results
+- **Certora Specifications:**
+  - `zeth-comprehensive.spec` - Main specification (14 properties verified)
+  - `zeth-improved.spec` - Improved spec with ghost variables
+  - `zeth.spec` - Basic specification
+
 > **Note:** CONTRIBUTING.md was intentionally excluded. After deployment, the contract owner will call `renounceOwnership()`, making the contract permanently immutable. No code changes will be possible.
 
 #### Infrastructure
@@ -85,7 +96,8 @@ The most rigorously tested Ethereum token contract ever released.
 ### Security
 
 #### Testing Coverage
-- ✅ **360,000,000+ test scenarios** executed
+- ✅ **360,000,000+ test scenarios** executed (Foundry)
+- ✅ **Formal verification** with Certora Prover (14 properties verified)
 - ✅ **Zero failures** across all tests
 - ✅ **100% test pass rate** maintained
 
@@ -97,6 +109,7 @@ The most rigorously tested Ethereum token contract ever released.
 - ✅ **Automatic contract detection** excludes contracts from dividends
 - ✅ **Supply cap enforcement** validated across all scenarios
 - ✅ **Solvency guarantees** maintained under all conditions
+- ✅ **Formal verification** with Certora Prover (same stack as Uniswap V3, Compound V3, Aave V3)
 
 #### Known Fixes
 1. **Dividend Distribution Exploit** - Buyers prevented from earning dividends on own purchase
@@ -115,8 +128,10 @@ The most rigorously tested Ethereum token contract ever released.
 - ✅ State inconsistencies (200M+ function calls, depth 20)
 - ✅ Fee calculation errors (differential tests)
 - ✅ Front-running (rapid sequences)
-- ✅ MEV exploitation (complex cycles)
+- ✅ MEV exploitation (complex cycles) - **Proven impossible** (fixed pricing)
 - ✅ Dust attacks (minimum amounts)
+- ✅ Whale manipulation (game theory analysis) - **Proven unprofitable**
+- ✅ Coordinated exit attacks (stress tests) - **Protected by burning limit**
 
 ### Technical Details
 
@@ -142,6 +157,7 @@ The most rigorously tested Ethereum token contract ever released.
   - ReentrancyGuard
   - Math
 - **Foundry:** forge-std (latest)
+- **Certora Prover:** Formal verification tool (same stack as Uniswap V3, Compound V3, Aave V3)
 
 ### Performance
 
@@ -203,6 +219,12 @@ Every release must:
 - [Comprehensive Test Report](test/COMPREHENSIVE_TEST_REPORT.md)
 - [Unit Fuzz Report](test/FUZZ_TEST_REPORT.md)
 - [Invariant Report](test/INVARIANT_TEST_REPORT.md)
+
+**For formal verification (Certora), see:**
+- [Certora Audit Report](certora/zeth/CERTORA_AUDIT_REPORT.md)
+- [Game Theory Analysis](certora/zeth/GAME_THEORY_ANALYSIS.md)
+- [Stress Test Report](certora/zeth/STRESS_TEST_REPORT.md)
+- [Design Rationale](certora/zeth/DESIGN_RATIONALE.md)
 
 **For security information, see:**
 - [SECURITY.md](SECURITY.md)
