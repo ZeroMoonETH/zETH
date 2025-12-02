@@ -4,6 +4,7 @@
 [![Foundry](https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg)](https://getfoundry.sh/)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.30-blue.svg)](https://soliditylang.org/)
 [![Tests](https://img.shields.io/badge/Tests-360M%2B-success.svg)](test/COMPREHENSIVE_TEST_REPORT.md)
+[![Certora](https://img.shields.io/badge/Certora-Formally%20Verified-00A3E0.svg)](certora/zeth/CERTORA_AUDIT_REPORT.md)
 
 > **The most rigorously tested Ethereum token contract ever released.**
 
@@ -13,9 +14,11 @@
 
 ZeroMoon zETH isn't just tested — it's **mathematically proven secure** through:
 
-- ✅ **360,000,000+ test scenarios** executed
+- ✅ **360,000,000+ test scenarios** executed (Foundry)
 - ✅ **160,000,000+ unit fuzz test cases** (10M runs per test)
 - ✅ **200,000,000+ invariant function calls** (1M runs × 20 depth)
+- ✅ **Formal verification** with Certora Prover (same stack as Uniswap V3, Compound V3, Aave V3)
+- ✅ **14 critical properties** mathematically proven
 - ✅ **Zero failures** across all test types
 - ✅ **Battle-tested** with Foundry's industry-leading fuzzer
 
@@ -29,6 +32,7 @@ ZeroMoon zETH isn't just tested — it's **mathematically proven secure** throug
 
 **Why we can do this with confidence:**
 - ✅ 360M+ test scenarios passed with zero failures
+- ✅ Formal verification with Certora (14 properties proven)
 - ✅ All attack vectors tested and mitigated
 - ✅ Mathematical proofs of core invariants
 - ✅ Comprehensive security validation
@@ -50,6 +54,7 @@ ZeroMoon zETH isn't just tested — it's **mathematically proven secure** throug
 | **Unit Fuzz Tests** | 10M per test | 160,000,000+ | ✅ **100% PASS** |
 | **Invariant Tests** | 1M per invariant | 200,000,000+ | ✅ **100% PASS** |
 | **Differential Tests** | 100K per test | 400,000+ | ✅ **100% PASS** |
+| **Formal Verification** | ALL states | 14 properties | ✅ **VERIFIED** |
 | **Grand Total** | - | **360,000,000+** | ✅ **ALL PASS** |
 
 **Execution Time:** ~96 minutes on standard hardware  
@@ -102,6 +107,21 @@ Backing Ratio: 99.9%
 ---
 
 ## 📚 Test Suite Overview
+
+### 0. Formal Verification (`certora/zeth/`)
+
+**Certora Prover** formal verification - mathematical proofs for ALL possible states:
+- ✅ **14 critical properties verified** - Mathematically proven correct
+- ✅ **Zero security vulnerabilities** - No actual bugs found
+- ✅ **Production-ready** - Contract verified and ready for deployment
+
+**Reports:**
+- [Certora Audit Report](certora/zeth/CERTORA_AUDIT_REPORT.md) - Comprehensive formal verification results
+- [Game Theory Analysis](certora/zeth/GAME_THEORY_ANALYSIS.md) - Attack vector analysis
+- [Stress Test Report](certora/zeth/STRESS_TEST_REPORT.md) - Extreme scenario testing
+- [Design Rationale](certora/zeth/DESIGN_RATIONALE.md) - Comparison with failed projects
+
+**Certora Job:** [02a3e9f9e78f4b14b25ec9c6b58fe339](https://prover.certora.com/output/7827024/02a3e9f9e78f4b14b25ec9c6b58fe339/)
 
 ### 1. Unit Fuzz Tests (`test/ZeroMoonFuzz.t.sol`)
 **16 comprehensive tests** covering:
@@ -227,20 +247,31 @@ forge coverage
 
 ## 📖 Documentation
 
+### Core Documentation
 - **[Immutability Explained](IMMUTABILITY.md)** - Contract renouncement & what it means
+- **[Security Policy](SECURITY.md)** - Security guarantees and audit results
+
+### Testing Reports
 - **[Comprehensive Test Report](test/COMPREHENSIVE_TEST_REPORT.md)** - 360M+ test case analysis
 - **[Unit Fuzz Report](test/FUZZ_TEST_REPORT.md)** - 160M+ unit test results
 - **[Invariant Test Report](test/INVARIANT_TEST_REPORT.md)** - 200M+ function call validation
 - **[Testing Guide](test/FUZZ_TESTING_GUIDE.md)** - How to run and interpret tests
 - **[Enhancements Summary](test/ENHANCEMENTS_SUMMARY.md)** - Test suite architecture
-- **[Security Policy](SECURITY.md)** - Security guarantees and audit results
+
+### Formal Verification (Certora)
+- **[Certora Audit Report](certora/zeth/CERTORA_AUDIT_REPORT.md)** - Comprehensive formal verification results
+- **[Game Theory Analysis](certora/zeth/GAME_THEORY_ANALYSIS.md)** - Attack vector analysis
+- **[Stress Test Report](certora/zeth/STRESS_TEST_REPORT.md)** - Extreme scenario testing
+- **[Design Rationale](certora/zeth/DESIGN_RATIONALE.md)** - Comparison with failed projects
+- **[Certora README](certora/zeth/README.md)** - Formal verification setup and results
 
 ---
 
 ## 🔐 Security
 
 ### Automated Testing
-- **360,000,000+ test scenarios** with zero failures
+- **360,000,000+ test scenarios** with zero failures (Foundry)
+- **Formal verification** with Certora Prover (14 properties proven)
 - **Stateful fuzzing** with 20-call depth sequences
 - **Invariant validation** across all protocol properties
 - **Differential testing** against reference models
@@ -335,6 +366,22 @@ zeromoon-zeth/
 │   ├── FUZZ_TESTING_GUIDE.md     # How to run tests
 │   ├── ENHANCEMENTS_SUMMARY.md   # Test architecture
 │   └── test-results/             # JSON logs (samples)
+│
+├── certora/
+│   └── zeth/
+│       ├── README.md             # Certora verification overview
+│       ├── CERTORA_AUDIT_REPORT.md # Comprehensive audit report
+│       ├── GAME_THEORY_ANALYSIS.md # Attack vector analysis
+│       ├── STRESS_TEST_REPORT.md  # Extreme scenario testing
+│       ├── DESIGN_RATIONALE.md    # Comparison with failed projects
+│       ├── zeth-comprehensive.spec # Main Certora specification
+│       ├── zeth-improved.spec    # Improved spec with ghost variables
+│       ├── zeth.spec             # Basic specification
+│       ├── certora.conf         # Certora configuration
+│       ├── run-maximum-certora.sh # Maximum verification script
+│       ├── run-basic-certora.sh  # Basic verification script
+│       └── src/
+│           └── ZeroMoon.sol      # Contract source code
 │
 ├── script/
 │   └── Deploy.s.sol              # Deployment script
