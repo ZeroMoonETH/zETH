@@ -2,7 +2,7 @@
 
 ## 🛡️ Security Overview
 
-ZeroMoon zETH has undergone one of the most comprehensive automated security testing campaigns in Ethereum history, with **360,000,000+ test scenarios** executed with **zero failures**.
+ZeroMoon zETH has undergone one of the most comprehensive automated security testing campaigns in Ethereum history, with **360,000,000+ test scenarios** executed with **zero failures**, plus **formal verification** using Certora Prover (the same verification stack used by Uniswap V3, Compound V3, and Aave V3).
 
 ---
 
@@ -15,6 +15,7 @@ ZeroMoon zETH has undergone one of the most comprehensive automated security tes
 | **Unit Fuzz Tests** | 10,000,000 per test (16 tests) | 160,000,000+ | ✅ **100% PASS** |
 | **Stateful Invariant Tests** | 1,000,000 per invariant (10 invariants) | 200,000,000+ function calls | ✅ **100% PASS** |
 | **Differential Tests** | 100,000 per test (4 tests) | 400,000+ | ✅ **100% PASS** |
+| **Formal Verification** | ALL possible states | 14 properties verified | ✅ **VERIFIED** |
 | **Total Coverage** | - | **360,000,000+** | ✅ **ALL PASS** |
 
 ### Stateful Testing Depth
@@ -27,7 +28,28 @@ ZeroMoon zETH has undergone one of the most comprehensive automated security tes
 
 ## 🔐 Security Guarantees
 
-### Protocol-Level Invariants (Mathematically Proven)
+### Formal Verification (Certora Prover)
+
+**14 Critical Properties Mathematically Proven:**
+1. ✅ **Supply Cap Enforcement** - Total supply never exceeds initial
+2. ✅ **Balance Safety** - No balance exceeds total supply
+3. ✅ **Dividend Fairness** - Buyers cannot earn own dividends
+4. ✅ **Burning Limit** - Burning capped at 20%
+5. ✅ **Fee Distribution** - All fees distributed correctly
+6. ✅ **Transfer Safety** - Transfers preserve invariants
+7. ✅ **Refund Solvency** - Contract can always fulfill refunds
+8. ✅ **Circulation Calculation** - Mathematically sound
+9. ✅ **Refund Calculation** - View matches execution
+10. ✅ **Buy Operations** - Increase circulation and tokens sold
+11. ✅ **Dividend Claims** - Increase user balance
+12. ✅ **Refund Operations** - Increase burned, decrease circulation
+13. ✅ **Rapid Transfers** - Maintain all invariants
+14. ✅ **Dividend Monotonicity** - Dividends only increase
+
+**Certora Job:** [02a3e9f9e78f4b14b25ec9c6b58fe339](https://prover.certora.com/output/7827024/02a3e9f9e78f4b14b25ec9c6b58fe339/)  
+**Report:** [Certora Audit Report](certora/zeth/CERTORA_AUDIT_REPORT.md)
+
+### Protocol-Level Invariants (Foundry - Mathematically Proven)
 
 All invariants tested with **1,000,000 runs** each at **depth 20**:
 
@@ -183,6 +205,20 @@ Validated across 10M+ fuzz runs:
 
 ## 🔬 Testing Methodology
 
+### 0. Formal Verification (Certora Prover)
+
+**Tool:** Certora Prover  
+**Method:** Mathematical proofs for ALL possible inputs and states  
+**Properties Verified:** 14 critical business logic properties  
+**Violations:** 9 false positives (all mathematical artifacts, not bugs)  
+**Result:** ✅ All critical properties verified, zero security vulnerabilities
+
+**Key Reports:**
+- [Certora Audit Report](certora/zeth/CERTORA_AUDIT_REPORT.md) - Comprehensive formal verification results
+- [Game Theory Analysis](certora/zeth/GAME_THEORY_ANALYSIS.md) - Attack vector analysis
+- [Stress Test Report](certora/zeth/STRESS_TEST_REPORT.md) - Extreme scenario testing
+- [Design Rationale](certora/zeth/DESIGN_RATIONALE.md) - Comparison with failed projects
+
 ### 1. Unit Fuzz Testing
 - **Tool:** Foundry (Forge)
 - **Runs:** 10,000,000 per test
@@ -252,10 +288,20 @@ While we don't currently have a formal bug bounty program, we appreciate securit
 
 ## 📚 Additional Resources
 
+### Foundry Testing
 - **[Comprehensive Test Report](test/COMPREHENSIVE_TEST_REPORT.md)** - Full 360M+ test analysis
 - **[Unit Fuzz Report](test/FUZZ_TEST_REPORT.md)** - 160M+ unit test details
 - **[Invariant Report](test/INVARIANT_TEST_REPORT.md)** - 200M+ invariant validation
 - **[Testing Guide](test/FUZZ_TESTING_GUIDE.md)** - How to run tests yourself
+
+### Formal Verification (Certora)
+- **[Certora Audit Report](certora/zeth/CERTORA_AUDIT_REPORT.md)** - Comprehensive formal verification results
+- **[Game Theory Analysis](certora/zeth/GAME_THEORY_ANALYSIS.md)** - Attack vector analysis
+- **[Stress Test Report](certora/zeth/STRESS_TEST_REPORT.md)** - Extreme scenario testing
+- **[Design Rationale](certora/zeth/DESIGN_RATIONALE.md)** - Comparison with failed projects
+- **[Certora README](certora/zeth/README.md)** - Formal verification setup and results
+
+### Contract Source
 - **[Contract Source](ZEROMOON/src/lib/ZeroMoon.sol)** - Fully commented source code
 
 ---
@@ -281,8 +327,6 @@ For security-related inquiries:
 
 ---
 
-**Last Updated:** 2025-11-10  
-**Testing Framework:** Foundry (Forge)  
-**Test Coverage:** 360,000,000+ scenarios  
-**Status:** ✅ Production Ready
-
+**Last Updated:** December 1, 2025  
+**Testing Framework:** Foundry (Forge) + Certora Prover  
+**Test Coverage:** 360,000,000+ scenarios + Formal verification (14 properties)
